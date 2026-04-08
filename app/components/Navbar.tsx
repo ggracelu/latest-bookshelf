@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, UserButton, useAuth } from "@clerk/nextjs";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -11,6 +11,7 @@ export default function Navbar() {
   const links = [
     { href: "/", label: "Home" },
     { href: "/search", label: "Search" },
+    { href: "/discover", label: "Discover" },
     ...(isSignedIn ? [{ href: "/my-books", label: "My Books" }] : []),
   ];
 
@@ -41,7 +42,14 @@ export default function Navbar() {
             ))}
           </div>
           {isSignedIn ? (
-            <UserButton />
+            <div className="flex items-center gap-4">
+              <UserButton />
+              <SignOutButton>
+                <button className="text-xs tracking-wider uppercase bg-light-border text-cream px-3 py-1.5 rounded hover:bg-warm-gray/30 transition-colors">
+                  Sign Out
+                </button>
+              </SignOutButton>
+            </div>
           ) : (
             <SignInButton mode="modal">
               <button className="text-sm tracking-wider uppercase text-warm-gray hover:text-cream transition-colors">
