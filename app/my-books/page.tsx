@@ -34,16 +34,16 @@ export default function MyBooksPage() {
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="mb-10">
-          <h1 className="font-[family-name:var(--font-playfair)] text-4xl text-accent mb-2">My Books</h1>
+          <h1 className="font-[family-name:var(--font-cormorant)] text-4xl text-accent mb-2">My Books</h1>
           <div className="w-12 h-px bg-accent mb-3" />
           <p className="text-warm-gray">Your personal collection.</p>
         </div>
 
         {loading ? (
-          <p className="text-center text-warm-gray font-[family-name:var(--font-special-elite)]">Loading your collection...</p>
+          <p className="text-center text-warm-gray font-[family-name:var(--font-fell)]">Loading your collection...</p>
         ) : books.length === 0 ? (
           <div className="text-center py-20">
-            <p className="font-[family-name:var(--font-playfair)] text-2xl text-cream mb-2">No books yet</p>
+            <p className="font-[family-name:var(--font-cormorant)] text-2xl text-cream mb-2">No books yet</p>
             <p className="text-warm-gray">Search for books and add them to your collection.</p>
           </div>
         ) : (
@@ -54,14 +54,14 @@ export default function MyBooksPage() {
                   {book.cover_url ? (
                     <Image src={book.cover_url} alt={book.title} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center"><span className="font-[family-name:var(--font-playfair)] text-muted-gold text-sm text-center px-2">{book.title}</span></div>
+                    <div className="w-full h-full flex items-center justify-center"><span className="font-[family-name:var(--font-cormorant)] text-muted-gold text-sm text-center px-2">{book.title}</span></div>
                   )}
                   <button onClick={() => handleRemove(book.ol_key)} disabled={removingKey === book.ol_key}
                     className="absolute top-2 right-2 bg-charcoal/80 text-cream p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-charcoal disabled:opacity-50" title="Remove">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"/></svg>
                   </button>
                 </div>
-                <h3 className="font-[family-name:var(--font-playfair)] text-sm text-cream leading-tight line-clamp-2">{book.title}</h3>
+                <h3 className="font-[family-name:var(--font-cormorant)] text-sm text-cream leading-tight line-clamp-2">{book.title}</h3>
                 <p className="text-xs text-warm-gray mt-0.5 line-clamp-1">{book.author}</p>
               </div>
             ))}

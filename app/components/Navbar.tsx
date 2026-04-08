@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link
           href="/"
-          className="font-[family-name:var(--font-playfair)] text-xl tracking-wide text-accent"
+          className="font-[family-name:var(--font-cormorant)] text-xl tracking-wide text-accent"
         >
           The Class Bookshelf
         </Link>

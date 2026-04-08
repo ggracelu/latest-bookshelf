@@ -151,11 +151,11 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Hero */}
       <div className="border-b border-light-border">
-        <div className="max-w-6xl mx-auto px-6 py-16 text-center">
-          <p className="font-[family-name:var(--font-special-elite)] text-warm-gray text-sm tracking-[0.3em] uppercase mb-4">Est. 2026</p>
-          <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl text-accent mb-4">The Class Bookshelf</h1>
-          <div className="w-16 h-px bg-accent mx-auto mb-4" />
-          <p className="text-warm-gray max-w-lg mx-auto text-lg mb-8">A curated collection of our favorite reads.</p>
+        <div className="max-w-6xl mx-auto px-6 py-20 text-center">
+          <p className="font-[family-name:var(--font-fell)] text-warm-gray text-sm tracking-[0.3em] uppercase mb-5 animate-fade-in" style={{animationDelay:'100ms'}}>Est. 2026</p>
+          <h1 className="font-[family-name:var(--font-cormorant)] text-5xl md:text-7xl text-accent mb-5 animate-fade-in-up font-semibold" style={{animationDelay:'200ms'}}>The Class Bookshelf</h1>
+          <div className="ornament max-w-xs mx-auto mb-5 animate-fade-in" style={{animationDelay:'350ms'}}><span className="text-accent-dim text-xs">&#9830;</span></div>
+          <p className="text-warm-gray max-w-lg mx-auto text-lg mb-10 animate-fade-in" style={{animationDelay:'400ms'}}>A curated collection of our favorite reads.</p>
           <form onSubmit={handleHeroSearch} className="max-w-md mx-auto flex gap-2">
             <input
               type="text"
@@ -164,7 +164,7 @@ export default function Home() {
               placeholder="Search for a book to add..."
               className="flex-1 rounded border border-light-border bg-espresso px-4 py-2.5 text-cream placeholder:text-warm-gray/50 focus:outline-none focus:ring-1 focus:ring-accent text-sm"
             />
-            <button type="submit" className="rounded bg-accent text-charcoal px-5 py-2.5 text-sm font-medium hover:bg-beige transition-colors">
+            <button type="submit" className="rounded bg-accent text-charcoal px-5 py-2.5 text-sm font-medium hover:bg-beige transition-colors cursor-pointer">
               Search
             </button>
           </form>
@@ -174,17 +174,17 @@ export default function Home() {
       {/* Book Gallery */}
       <div className="max-w-6xl mx-auto px-6 py-12">
         {loading ? (
-          <p className="text-center text-warm-gray font-[family-name:var(--font-special-elite)]">Loading the collection...</p>
+          <p className="text-center text-warm-gray font-[family-name:var(--font-fell)]">Loading the collection...</p>
         ) : books.length === 0 ? (
           <div className="text-center py-20">
-            <p className="font-[family-name:var(--font-playfair)] text-2xl text-cream mb-2">The shelves are empty</p>
+            <p className="font-[family-name:var(--font-cormorant)] text-2xl text-cream mb-2">The shelves are empty</p>
             <p className="text-warm-gray">Be the first to add a book.</p>
           </div>
         ) : (
           <>
             {/* Shelf header with filter */}
             <div className="flex items-center justify-between mb-4 gap-4">
-              <p className="text-sm text-warm-gray font-[family-name:var(--font-special-elite)] tracking-wider whitespace-nowrap">
+              <p className="text-sm text-warm-gray font-[family-name:var(--font-fell)] tracking-wider whitespace-nowrap">
                 {filteredBooks.length} {filteredBooks.length === 1 ? "book" : "books"} on the shelf
               </p>
               <input
@@ -221,9 +221,9 @@ export default function Home() {
               </div>
             )}
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 stagger-children">
               {filteredBooks.map((book) => (
-                <div key={book.ol_key} className="group relative">
+                <div key={book.ol_key} className="group relative book-card">
                   <div onClick={() => { setSelected(book); setShowDetails(false); setDetails(null); setShowLikers(false); }} className="cursor-pointer">
                     <div className="absolute top-2 right-2 flex gap-1 z-10">
                       {savedKeys.has(book.ol_key) && (
@@ -241,10 +241,10 @@ export default function Home() {
                       {book.cover_url ? (
                         <Image src={book.cover_url} alt={book.title} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw" />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center"><span className="font-[family-name:var(--font-playfair)] text-muted-gold text-sm text-center px-2">{book.title}</span></div>
+                        <div className="w-full h-full flex items-center justify-center"><span className="font-[family-name:var(--font-cormorant)] text-muted-gold text-sm text-center px-2">{book.title}</span></div>
                       )}
                     </div>
-                    <h3 className="font-[family-name:var(--font-playfair)] text-sm text-cream leading-tight line-clamp-2">{book.title}</h3>
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-sm text-cream leading-tight line-clamp-2">{book.title}</h3>
                     <p className="text-xs text-warm-gray mt-0.5 line-clamp-1">{book.author}</p>
                   </div>
                   <button
@@ -263,8 +263,8 @@ export default function Home() {
 
       {/* Modal */}
       {selected && (
-        <div className="fixed inset-0 bg-charcoal/80 flex items-center justify-center z-50" onClick={() => setSelected(null)}>
-          <div className="bg-espresso rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl border border-light-border max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-charcoal/80 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in" onClick={() => setSelected(null)}>
+          <div className="bg-espresso rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl border border-light-border max-h-[90vh] overflow-y-auto animate-scale-in" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start gap-4 mb-6">
               {selected.cover_url ? (
                 <Image src={selected.cover_url} alt={selected.title} width={80} height={120} className="rounded shadow-md flex-shrink-0" />
@@ -272,7 +272,7 @@ export default function Home() {
                 <div className="w-[80px] h-[120px] bg-parchment rounded flex items-center justify-center text-muted-gold text-xs flex-shrink-0">No Cover</div>
               )}
               <div>
-                <h2 className="font-[family-name:var(--font-playfair)] text-lg text-cream line-clamp-3">{selected.title}</h2>
+                <h2 className="font-[family-name:var(--font-cormorant)] text-lg text-cream line-clamp-3">{selected.title}</h2>
                 <p className="text-sm text-warm-gray mt-1">{selected.author}</p>
                 <button
                   onClick={() => handleShowLikers(selected.ol_key)}
@@ -289,7 +289,7 @@ export default function Home() {
               <div className="mb-4 p-3 bg-parchment rounded border border-light-border">
                 <p className="text-xs text-warm-gray font-medium mb-2">Favorited by:</p>
                 {loadingLikers ? (
-                  <p className="text-warm-gray text-xs font-[family-name:var(--font-special-elite)]">Loading...</p>
+                  <p className="text-warm-gray text-xs font-[family-name:var(--font-fell)]">Loading...</p>
                 ) : likers.length > 0 ? (
                   <div className="flex flex-wrap gap-1.5">
                     {likers.map((l, i) => (
@@ -305,7 +305,7 @@ export default function Home() {
             {showDetails && (
               <div className="mb-6 p-4 bg-parchment rounded border border-light-border">
                 {loadingDetails ? (
-                  <p className="text-warm-gray text-sm font-[family-name:var(--font-special-elite)]">Loading details...</p>
+                  <p className="text-warm-gray text-sm font-[family-name:var(--font-fell)]">Loading details...</p>
                 ) : details?.description ? (
                   <>
                     <p className="text-cream text-sm leading-relaxed">{details.description}</p>

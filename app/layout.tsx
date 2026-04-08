@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Playfair_Display, Lora, Special_Elite } from "next/font/google";
+import { Cormorant_Garamond, Libre_Baskerville, IM_Fell_English } from "next/font/google";
 import SyncUser from "./components/SyncUser";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const lora = Lora({
-  variable: "--font-lora",
+const baskerville = Libre_Baskerville({
+  variable: "--font-baskerville",
   subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
-const specialElite = Special_Elite({
-  variable: "--font-special-elite",
+const fellEnglish = IM_Fell_English({
+  variable: "--font-fell",
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -37,9 +39,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${lora.variable} ${specialElite.variable} h-full`}
+      className={`${cormorant.variable} ${baskerville.variable} ${fellEnglish.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground antialiased noise-overlay">
         <ClerkProvider>
           <SyncUser />
           <Navbar />

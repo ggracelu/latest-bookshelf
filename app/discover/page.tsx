@@ -121,7 +121,7 @@ export default function DiscoverPage() {
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="mb-10">
-          <h1 className="font-[family-name:var(--font-playfair)] text-4xl text-accent mb-2">Discover</h1>
+          <h1 className="font-[family-name:var(--font-cormorant)] text-4xl text-accent mb-2">Discover</h1>
           <div className="w-12 h-px bg-accent mb-3" />
           <p className="text-warm-gray">Browse popular books by genre.</p>
         </div>
@@ -145,13 +145,13 @@ export default function DiscoverPage() {
 
         {/* Book grid */}
         {loading ? (
-          <p className="text-center text-warm-gray font-[family-name:var(--font-special-elite)]">Loading books...</p>
+          <p className="text-center text-warm-gray font-[family-name:var(--font-fell)]">Loading books...</p>
         ) : books.length === 0 ? (
           <p className="text-center text-warm-gray">No books found for this genre.</p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8">
             {books.map((book) => (
-              <div key={book.key} onClick={() => { setSelectedBook(book); setShowDetails(false); setDetails(null); }} className="relative group cursor-pointer">
+              <div key={book.key} onClick={() => { setSelectedBook(book); setShowDetails(false); setDetails(null); }} className="relative group cursor-pointer book-card">
                 <div className="absolute top-2 right-2 flex gap-1 z-10">
                   {savedKeys.has(book.key) && (
                     <span className="bg-accent text-charcoal p-1 rounded-full">
@@ -168,10 +168,10 @@ export default function DiscoverPage() {
                   {book.cover_id ? (
                     <Image src={`https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`} alt={book.title} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center"><span className="font-[family-name:var(--font-playfair)] text-muted-gold text-sm text-center px-2">{book.title}</span></div>
+                    <div className="w-full h-full flex items-center justify-center"><span className="font-[family-name:var(--font-cormorant)] text-muted-gold text-sm text-center px-2">{book.title}</span></div>
                   )}
                 </div>
-                <h3 className="font-[family-name:var(--font-playfair)] text-sm text-cream leading-tight line-clamp-2">{book.title}</h3>
+                <h3 className="font-[family-name:var(--font-cormorant)] text-sm text-cream leading-tight line-clamp-2">{book.title}</h3>
                 <p className="text-xs text-warm-gray mt-0.5 line-clamp-1">{book.author}</p>
               </div>
             ))}
@@ -181,8 +181,8 @@ export default function DiscoverPage() {
 
       {/* Modal */}
       {selectedBook && (
-        <div className="fixed inset-0 bg-charcoal/80 flex items-center justify-center z-50" onClick={() => setSelectedBook(null)}>
-          <div className="bg-espresso rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl border border-light-border max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-charcoal/80 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in" onClick={() => setSelectedBook(null)}>
+          <div className="bg-espresso rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl border border-light-border max-h-[90vh] overflow-y-auto animate-scale-in" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start gap-4 mb-6">
               {selectedBook.cover_id ? (
                 <Image src={`https://covers.openlibrary.org/b/id/${selectedBook.cover_id}-M.jpg`} alt={selectedBook.title} width={80} height={120} className="rounded shadow-md flex-shrink-0" />
@@ -190,7 +190,7 @@ export default function DiscoverPage() {
                 <div className="w-[80px] h-[120px] bg-parchment rounded flex items-center justify-center text-muted-gold text-xs flex-shrink-0">No Cover</div>
               )}
               <div>
-                <h2 className="font-[family-name:var(--font-playfair)] text-lg text-cream line-clamp-3">{selectedBook.title}</h2>
+                <h2 className="font-[family-name:var(--font-cormorant)] text-lg text-cream line-clamp-3">{selectedBook.title}</h2>
                 <p className="text-sm text-warm-gray mt-1">{selectedBook.author}</p>
               </div>
             </div>
@@ -198,7 +198,7 @@ export default function DiscoverPage() {
             {showDetails && (
               <div className="mb-6 p-4 bg-parchment rounded border border-light-border">
                 {loadingDetails ? (
-                  <p className="text-warm-gray text-sm font-[family-name:var(--font-special-elite)]">Loading details...</p>
+                  <p className="text-warm-gray text-sm font-[family-name:var(--font-fell)]">Loading details...</p>
                 ) : details?.description ? (
                   <>
                     <p className="text-cream text-sm leading-relaxed">{details.description}</p>
