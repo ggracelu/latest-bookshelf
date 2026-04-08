@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
@@ -36,6 +36,14 @@ function setLocalFavorites(favs: LocalFavorite[]) {
 }
 
 export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><p className="text-warm-gray font-[family-name:var(--font-special-elite)]">Loading...</p></div>}>
+      <SearchContent />
+    </Suspense>
+  );
+}
+
+function SearchContent() {
   const { isSignedIn } = useAuth();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
